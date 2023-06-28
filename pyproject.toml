@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "orepy"
+version = "0.1.0"
+description = ""
+authors = ["urawa72 <urawa72@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^7.4.0"
+black = "^23.3.0"
+ruff = "^0.0.275"
+mypy = "^1.4.1"
+isort = "^5.12.0"
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict = true
+ 
+[tool.ruff]
+select = [
+    # pyflakes
+    "F",
+    # pycodestyle errors, warnings
+    "E",
+    "W",
+    # isort
+    # "I",
+    # flake8-2020
+    "YTT",
+    # flake8-bugbear
+    "B",
+]
+
+line-length = 120
+target-version = "py311"
+ 
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+ 
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+ 
+[tool.poe.tasks.pytest]
+shell = "pytest -v --cov=. --cov-branch"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
